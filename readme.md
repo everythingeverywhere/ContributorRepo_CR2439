@@ -28,8 +28,31 @@ The Contributor repository also includes a portfolio website that displays a nic
 </details>
 <br/>
 
-### 2.2 
+### 2.2 Select the `Contributor Repo Request` issue ticket template
 
+<details><summary>Screenshot 2.2</summary>
+<img src="media/2020-04-07-02-14-35.png">
+</details>
+<br/>
+
+### 2.3 Fill out the `Contributor Repo Request` form and click `Submit new issue`
+
+Use the title: `Contributor Repo Request for {Github UserID}` - using your github ID
+
+Review the instructions in the request form, fill in your github ID and email address per the instructions in the form, and click `Submit new issue`
+
+<details><summary>Screenshot 2.3</summary>
+<img src="media/2020-04-07-02-19-50.png">
+</details>
+<br/>
+
+### 2.4 Wait for your repo to be provisioned
+
+Please note that while we make our best effort to provision your contributor repository as quickly as possible, it could take up to a few days to provision the repo. However, please be aware that requesting a contributor repo is a one-time process, once it is provisioned for you, it will be immediately usable for your ongoing needs.
+
+Once we are able to review your request and provision your contributor repo, we will send an email to the provided email address with details and further instructions for accessing your contributor repository. 
+
+## Step 3: Configure your contributor portfolio
 
 Example:
 `cp frontend-deployment_all_k8s.yaml frontend-deployment_ingress.yaml`
