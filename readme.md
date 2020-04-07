@@ -1,49 +1,27 @@
-**THIS GUIDE IS UNDER DEVELOPMENT AND MAY NOT BE FUNCTIONAL - THIS MESSAGE WILL BE REMOVED WHEN THE GUIDE IS READY FOR USE. IF YOU HAVE ANY QUESTIONS, PLEASE OPEN AN ISSUE TICKET. IF YOU WOULD LIKE TO CONTRIBUTE TO THIS GUIDE, PLEASE SUBMIT A PR WITH YOUR UPDATES, THANK YOU.** 
-
-**PLEASE DO NOT REMOVE ANYTHING ABOVE THIS LINE UNTIL YOUR GUIDE IS COMPLETE AND VALIDATED FOR END USER CONSUMPTION** 
-
-## ModernApps.ninja starter guide template 
-
-Please reference the content below for formatting examples, and replace with your desired content.
-# Lab Excercise Page Syle Template - 1st level - Main Header
+# Setting up your Modernapps Ninja Contributor Repository
 
 **Contents:**
 
-- [Step 1: ]()
-- [Step 2: ]()
-- [Step 3: ]()
-- [Step 4: ]()
-- [Step 5: ]()
-- [Next Steps]()
+- [Step 1: About ModernApps Ninja Contributor Repository and Portfolio]()
+- [Step 2: Request your contributor Repository]()
+- [Step 3: Configure your contributor portfolio]()
+- [Step 4: Post assignments and course completion records to your contributor repository]()
+- [Step 5: Add your completion record to the verify service]()
+- [Step 6: Update your portfolio to display your course completion certificate]()
 
-## Step 1: 2nd level header, steps often have multiple substeps and subsections
+## Step 1: About ModernApps Ninja Contributor Repository and Portfolio
 
-1.1 Uses dotted decimal numbering. This sentence 1.1 is a substep of step 1. Use a single decimal format for each substep that itself does not have other substeps. For substeps that have their own substeps, use a subsection format shown in steps 1.2 and 1.3
+1.1 The ModernApps Ninja Contributor Repository Service provides a dedicated repository for any participant in the ModernApps Ninja community. A contributor repository is required to recieve a course of completion for [modernapps.ninja](https://modernapps.ninja) courses that offer certificates of completion. 
 
-This format is intended to find an optimal balance of usability for the user and flexibility and simplicity for content developers. As this paragraph demonstrates, its perfectly fine to add prose inline within each step as needed to sufficiently explain the step, keeping in mind that it is crucial for user experience to keep the document streamlined, and so recommend liberal use of hidden and expandable section blocks as shown below
+Note that it is called a contributor repository and not a student or participant repository because all participants who complete course requirements provide meaningful contributions to the community as a core part of their learning experience and can rightfully consider themselves to be contributors to the community. 
 
-<details><summary>Click to expand</summary>
+The Contributor repository serves both as a location where participants can practice gitops skills and also post assignments and course completion records, which act as part of the proof of completion required to validate completion certificate requests. 
 
-If you have any long text sections such as detailed explanations, code examples, configuration files, etc, please wrap them in expanding sections as shown here.
+The Contributor repository also includes a portfolio website that displays a nicely organized page to display your modernapps.ninja course completion certificates, records, and contributions. 
 
-Keep in mind this template is optimized for Lab Exercise guides which generally include lots of tasks that the reader needs to do. 
+## Step 2: Request your contributor Repository
 
-Also please place all images inside expanding blocks, further details about images will be shown in step 1.4 below
-
-</details>
-<br/>
-
-1.2 Minor subsection headers
-
-1.2.1 if you have a substep that includes its own substeps, you need a subsection. This style guide offers two options for subsection handling, the minor subsection format shown here in step 1.2, and the major subsection format shown in step 1.3
-
-### 1.3 Major Subsection Headers
-
-Use major subsection headers whenever they are a better fit for the flow of your document. It is fine to use both minor and major subsection styles within the same document, so long as the overall flow and organization of the document make sense to the reader
-
-The rest of the text below is sample text copied from a lab exercise guide that uses this style
-
-1.3.1 Make a copy of the `frontend-deployment_all_k8s.yaml` file, save it as `frontend-deployment_ingress.yaml`
+2.1 In a web browser, navigate to [https://github.com/modernappsninjas/dojo](https://github.com/modernappsninjas/dojo)
 
 Example:
 `cp frontend-deployment_all_k8s.yaml frontend-deployment_ingress.yaml`
