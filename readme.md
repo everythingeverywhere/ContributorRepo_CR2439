@@ -21,12 +21,14 @@ The Contributor repository also includes a portfolio website that displays a nic
 
 ## Step 2: Request your contributor Repository
 
-2.1 In a web browser, navigate to [https://github.com/modernappsninjas/dojo/issues](https://github.com/modernappsninjas/dojo/issues), and select the `New Issue` button to open an issue ticket.
+### 2.1 In a web browser, navigate to [https://github.com/modernappsninjas/dojo/issues](https://github.com/modernappsninjas/dojo/issues), and select the `New Issue` button to open an issue ticket.
 
 <details><summary>Screenshot 2.1</summary>
-
+<img src="media/2020-04-07-00-48-03.png">
 </details>
 <br/>
+
+### 2.2 
 
 
 Example:
