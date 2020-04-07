@@ -21,7 +21,13 @@ The Contributor repository also includes a portfolio website that displays a nic
 
 ## Step 2: Request your contributor Repository
 
-2.1 In a web browser, navigate to [https://github.com/modernappsninjas/dojo](https://github.com/modernappsninjas/dojo)
+2.1 In a web browser, navigate to [https://github.com/modernappsninjas/dojo/issues](https://github.com/modernappsninjas/dojo/issues), and select the `New Issue` button to open an issue ticket.
+
+<details><summary>Screenshot 2.1</summary>
+
+</details>
+<br/>
+
 
 Example:
 `cp frontend-deployment_all_k8s.yaml frontend-deployment_ingress.yaml`
