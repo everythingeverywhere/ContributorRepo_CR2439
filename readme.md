@@ -26,14 +26,12 @@ The Contributor repository also includes a portfolio website that displays a nic
 <details><summary>Screenshot 2.1</summary>
 <img src="media/2020-04-07-00-48-03.png">
 </details>
-<br/>
 
 #### 2.2 Select the `Contributor Repo Request` issue ticket template
 
 <details><summary>Screenshot 2.2</summary>
 <img src="media/2020-04-07-02-14-35.png">
 </details>
-<br/>
 
 #### 2.3 Fill out the `Contributor Repo Request` form and click `Submit new issue`
 
@@ -44,7 +42,6 @@ Review the instructions in the request form, fill in your github ID and email ad
 <details><summary>Screenshot 2.3</summary>
 <img src="media/2020-04-07-02-19-50.png">
 </details>
-<br/>
 
 #### 2.4 Wait for your repo to be provisioned
 
