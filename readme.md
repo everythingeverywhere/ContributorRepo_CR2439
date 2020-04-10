@@ -8,7 +8,7 @@
 
 ## Step 1: About ModernApps Ninja Contributor Repository and Portfolio
 
-#### 1.1 The ModernApps Ninja Contributor Repository Service provides a dedicated repository for any participant in the ModernApps Ninja community. A contributor repository is required to recieve a course of completion for [modernapps.ninja](https://modernapps.ninja) courses that offer certificates of completion. 
+#### 1.1 The ModernApps Ninja Contributor Repository Service provides a dedicated repository for any participant in the ModernApps Ninja community. A contributor repository is required to recieve a certificate of completion for [modernapps.ninja](https://modernapps.ninja) courses that offer certificates of completion. 
 
 Note that it is called a contributor repository and not a student or participant repository because all participants who complete course requirements provide meaningful contributions to the community as a core part of their learning experience and can rightfully consider themselves to be contributors to the community. 
 
