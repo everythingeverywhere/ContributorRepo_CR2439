@@ -5,9 +5,6 @@
 - [Step 1: About ModernApps Ninja Contributor Repository and Portfolio]()
 - [Step 2: Request your contributor Repository]()
 - [Step 3: Configure your contributor portfolio]()
-- [Step 4: Post assignments and course completion records to your contributor repository]()
-- [Step 5: Add your completion record to the verify service]()
-- [Step 6: Update your portfolio to display your course completion certificate]()
 
 ## Step 1: About ModernApps Ninja Contributor Repository and Portfolio
 
@@ -49,157 +46,198 @@ Please note that while we make our best effort to provision your contributor rep
 
 Once we are able to review your request and provision your contributor repo, we will send an email to the provided email address with details and further instructions for accessing your contributor repository. 
 
+**You will not be able to proceed to Step 3 until your repository has been prepared. Please come back to this page, and proceed with step 3 once you have recieved the email with confirmation of your repository setup.** 
+
 ## Step 3: Configure your contributor portfolio
 
-Example:
-`cp frontend-deployment_all_k8s.yaml frontend-deployment_ingress.yaml`
+Each course that provides a certificate of completion will provide instructions on where and what files you will need to save in your repository to meet course completion requirements. 
 
-1.3.2 Get the URL of your smarcluster with the following command, be sure to replace 'afewell-cluster' with the name of your cluster:
+In this step, you will setup the initial configuration for the repository and setup github pages to display the contents of the https://github.com/modernappsninjas/<yourGithubUsername>/docs/ directory of youre repository which will be viewable at the url https://modernappsninjas.github.io/<yourGithubUsername>. 
 
-``` bash
-vke cluster show afewell-cluster | grep Address
-```
+For example, you can view the ModernApps Ninja portfolio for github user "Oni-no-Hanzo" at the url [https://modernappsninjas.github.io/Oni-no-Hanzo](https://modernappsninjas.github.io/Oni-no-Hanzo)
 
-<details><summary>Screenshot 1.3.2</summary>
-<img src="media/2018-10-20-15-45-19.png">
+### 3.1: Configure your repository for github pages
+
+#### 3.1.1 Navigate to the settings page of your contributor repository at https://github.com/modernappsninjas/<yourGithubUsername>/settings, using your github username
+
+On your settings page, scroll down to the `Github Pages` section, and under `Source`, select `master branch /docs folder`
+
+<details><summary>Screenshot 3.1</summary>
+<img src="media/2020-04-08-18-06-52.png">
 </details>
 <br/>
 
-1.3.3 Edit the `frontend-deployment_ingress.yaml` file, near the bottom of the file in the ingress spec section, change the value for spec.rules.host to URL for your smartcluster as shown in the following snippet:
+After you select the source value, the setting will automatically apply, you do not need to press any other button to confirm. 
 
-NOTE: Be sure to replace the URL shown here with the URL for your own smartcluster
+#### 3.1.2 View your new github page
 
-``` bash
-spec:
-  rules:
-  - host: afewell-cluster-69fc65f8-d37d-11e8-918b-0a1dada1e740.fa2c1d78-9f00-4e30-8268-4ab81862080d.vke-user.com
-    http:
-      paths:
-      - backend:
-          serviceName: planespotter-frontend
-          servicePort: 80
-```
+On the settings page for your contributor repository, navigate to the `Gihub Pages` section, and as soon as you site is ready, you should see a link provided to your new page as showin in the screenshot below. Click on the link to view your new sample provile page
 
-<details><summary>Click to expand to see the full contents of frontend-deployment_ingress.yaml</summary>
-
-When reviewing the file contents below, observe that it includes a ClusterIP service spec which only provides an IP address that is usable for pod-to-pod communications in the cluster. The file also includes an ingress spec which implements the default VKE ingress controller.
-
-In the following steps after you deploy the planespotter-frontend with ingress controller, you will be able to browse from your workstation to the running planespotter app in your VKE environment even though you have not assigned a nat or public IP for the service.
-
-Ingress controllers act as a proxies, recieving http/s requests from external clients and then based on the URL hostname or path, the ingress controller will proxy the request to the corresponding back-end service. For example mysite.com/path1 and mysite.com/path2 can be routed to different backing services running in the kubernetes cluster.
-
-In the file below, no rules are specified to different paths and so accordingly, all requests sent to the host defined in the spec, your VKE SmartCluster URL, will be proxied by the ingress controller to the planespotter-frontend ClusterIP service also defined in the frontend-deployment_ingress.yaml file
-
-``` bash
----
-apiVersion: apps/v1beta1
-kind: Deployment
-metadata:
-  name: planespotter-frontend
-  namespace: planespotter
-  labels:
-    app: planespotter-frontend
-    tier: frontend
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: planespotter-frontend
-  template:
-    metadata:
-      labels:
-        app: planespotter-frontend
-        tier: frontend
-    spec:
-      containers:
-      - name: planespotter-fe
-        image: yfauser/planespotter-frontend:d0b30abec8bfdbde01a36d07b30b2a3802d9ccbb
-        imagePullPolicy: IfNotPresent
-        env:
-        - name: PLANESPOTTER_API_ENDPOINT
-          value: planespotter-svc
-        - name: TIMEOUT_REG
-          value: "5"
-        - name: TIMEOUT_OTHER
-          value: "5"
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: planespotter-frontend
-  namespace: planespotter
-  labels:
-    app: planespotter-frontend
-spec:
-  ports:
-    # the port that this service should serve on
-    - port: 80
-  selector:
-    app: planespotter-frontend
----
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: planespotter-frontend
-  namespace: planespotter
-spec:
-  rules:
-  - host: afewell-cluster-69fc65f8-d37d-11e8-918b-0a1dada1e740.fa2c1d78-9f00-4e30-8268-4ab81862080d.vke-user.com
-    http:
-      paths:
-      - backend:
-          serviceName: planespotter-frontend
-          servicePort: 80
-```
-
+<details><summary>Screenshot 3.1.2.1</summary>
+<img src="media/2020-04-08-18-06-52.png">
+</details>
+<details><summary>Screenshot 3.1.2.2</summary>
+<img src="media/2020-04-08-18-28-38.png">
 </details>
 <br/>
 
-1.3.4 Run the updated planespotter-frontend app and verify deployment with the following commands. Make note of the external IP address/hostname shown in the output of `kubectl get services`
+### 3.2 Edit your repositories github root readme file
 
-``` bash
-kubectl create -f frontend-deployment_ingress.yaml
-kubectl get pods
-kubectl get deployments
-kubectl get services
-kubectl get ingress
-kubectl describe ingress
-```
+#### 3.2.1 Navigate to your contributor repository on github at https://github.com/modernappsninja/<yourGithubUsername> and update your github root readme.md file
 
-<details><summary>Screenshot 1.3.4</summary>
-<img src="media/2018-10-20-16-11-14.png">
+Github.com will display the contents of a file named README.md in the web browser when you navigate to a repository root or subdirectory if there is a file named readme.md present. It is a good practice to set up the readme file in the root of your repository with some basic information. There is no required format for the root readme file, you can set it up however you would like, or not change it at all. 
+
+#### 3.4 Scroll down to the README.md viewer and click the pencil icon in the upper right hand corner of the viewer window to edit the file, as shown in the image below. 
+
+<details><summary>Screenshot 3.2.1</summary>
+<img src="media/2020-04-08-22-20-44.png">
 </details>
 
-1.3.5 Open a browser and go to the url of your VKE SmartCluster to verify that planespotter-frontend is externally accessible with the LoadBalancer service
+#### 3.2.2 After you have edited the readme file with your desired changes, scroll down to the `Commit Changes` section and select the option to `Create a new branch`, set the branch name as `my-branch-1` and click `Propose file change`
 
-<details><summary>Screenshot 5.5.5</summary>
-<img src="media/2018-10-20-16-26-46.png">
+<details><summary>Screenshot 3.2.2</summary>
+<img src="media/2020-04-10-01-34-48.png">
 </details>
-<br/>
 
-1.3.6 Clean up the planespotter-frontend components and verify with the following commands:
+#### 3.2.3 On the `Open a pull request` screen, click `Create pull request`
 
-``` bash
-kubectl delete -f frontend-deployment_ingress.yaml
-kubectl get pods
-kubectl get deployments
-kubectl get services
-kubectl get ingress
-```
-
-<details><summary>Screenshot 5.5.6</summary>
-<img src="media/2018-10-20-16-32-19.png">
+<details><summary>Screenshot 3.2.3</summary>
+<img src="media/2020-04-09-13-46-26.png">
 </details>
-<br/>
 
-## Next Steps
+#### 3.2.4 On the pull request page, click the link to `updating readme.md` to see an outline of the changes you proposed. It is ALWAYS a good practice to click this link and examine the file changes to ensure the proposed changes are exactly what you expect. Note that the lines in green are lines that will be added if approved, and the lines displayed in red are the lines that will be deleted if approved.
 
-This lab provided an introductory overview of Kubernetes operations. Additional topics such as persistent volumes, network policy, config maps, stateful sets and more will be covered in more detail in the ongoing labs.
+<details><summary>Screenshot 3.2.4.1</summary>
+<img src="media/2020-04-10-01-49-54.png">
+</details>
 
-If you are following the PKS Ninja cirriculum, [click here to proceed to the next lab](../Lab2-PksInstallationPhaseOne). As you proceed through the remaining labs you will learn more advanced details about Kubernetes using additional planespotter app components as examples and then deploy the complete planespotter application on a PKS environment.
+<details><summary>Screenshot 3.2.4.2</summary>
+<img src="media/2020-04-10-01-51-36.png">
+</details>
 
-If you are not following the PKS Ninja cirriculum and would like to deploy the complete planespotter app on VKE, you can find [complete deployment instructions here](https://github.com/Boskey/run_kubernetes_with_vmware)
+#### 3.2.5 Click the back button on your browser to return to the pullrequest screen. Scroll to the bottom of the page, and ensure the `pr-build` value is set to `All Tasks have completed executing`, or if pipeline tasks are still running, wait until tasks have completed executing before proceeding. 
 
-### Thank you for completing the Introduction to Kubernetes Lab!
+In the comment box on the bottom of the page, type `/approve` and then click the `Comment` button.
 
-### [Please click here to proceed to Lab2: PKS Installation Phase 1](../Lab2-PksInstallationPhaseOne)
+<details><summary>Screenshot 3.2.5</summary>
+<img src="media/2020-04-10-02-11-04.png">
+</details>
+
+#### 3.2.6 Observe after you click the commit button, you will see some updates being made to your page while the modernapps ninja tekton pipelines process your approval. 
+
+Generally the pipelines take about a minute or two to complete, once the pipeline is done processing, you will see a message that says your pull request has been merged and you can delete the branch. 
+
+Click the button to delete the my-patch-1 branch since you have now finished approving all the changes you made on that branch. 
+
+<details><summary>Screenshot 3.2.6</summary>
+<img src="media/2020-04-10-02-16-56.png">
+</details>
+
+#### 3.2.7 It is possible to simply press `merge pull request` to approve your changes, however we recommend using the method above as your repo has been preconfigured to run a processing pipeline that provides several features, including providing a release, version number and git tag for each approved change. 
+
+You can observe the releases by going to the homepage for your repository, and clicking on the `Releases` tab. 
+
+<details><summary>Screenshot 3.2.7.1</summary>
+<img src="media/2020-04-10-02-28-07.png">
+</details>
+
+<details><summary>Screenshot 3.2.7.2</summary>
+<img src="media/2020-04-10-02-29-17.png">
+</details>
+
+### 3.3: Configure source files for your github page
+
+In your contributor repository, the `_config.yml` and `index.md` files located in the  https://github.com/modernappsninjas/<yourGithubUsername>/docs/ are the primary pages responsible for producing your modernapps ninja github page (https:modernappsninjas.github.io/<yourGithubUsername>). In this step you will modify these files with your own information.
+
+#### 3.3.1 Prepare an image on your local machine that you would like to use as your profile picture, and save the picture with the file name `my_image.png` on your computers local harddrive. 
+
+#### 3.3.2 Navigate to the `/docs/images/` directory in your repository and execute the following actions:
+
+- Click the `Upload files` button
+- Select your `my_image.png` file
+- In the `Commit Changes` section:
+  - Set the commit description to `uploading profile image`
+  - Select the option to `Create a new branch`
+  - Name the branch `my-patch-1`
+  - Click `Propose Changes`
+- On the `Open a pull request` screen, click `Create pull request`
+
+<details><summary>Screenshot 3.3.2.1</summary>
+<img src="media/2020-04-10-01-30-18.png">
+</details>
+
+<details><summary>Screenshot 3.3.2.2</summary>
+<img src="media/2020-04-10-01-59-06.png">
+</details>
+
+<details><summary>Screenshot 3.3.2.3</summary>
+<img src="media/2020-04-10-02-02-07.png">
+</details>
+
+#### 3.3.3 On the PullRequest screen, review your changes, then scroll to the bottom of the pullrequest page and execute the following actions
+
+- Ensure that the value for `pr-build` is `All Tasks have completed executing` 
+- In the comment box, type `/approve` and then click the `Comment` button
+- Wait for the modernappsninja-jx-bot to process your approval (less than 2 minutes)
+- Once the page shows that the merge has been completed, an option to delete branch will appear
+- Click `Delete branch`
+
+
+#### 3.3.4 Navigate to the `/docs/` directory in your repository, click on the `_config.yml` file. Open a seperate browser tab to your github.io portfolio page at https://modernappsninjas.github.io/<yourGithubUsername>. Observe that the `_config.yml` page includes some html tags, and much of the same text that you see on the lefthand side of your github.io portfolio page. 
+
+You do not need to know much about HTML tags to properly edit this page, you can simply edit the plain text in the `_config.yml` file without changing any of the html tags, and the page will be updated with your text in place of the text that is currently displayed in your github.io portfolio page.
+
+<details><summary>Screenshot 3.3.4</summary>
+<img src="media/2020-04-10-00-25-59.png">
+</details>
+
+#### 3.3.5 In your repository, click on the pencil in the upper right hand corner to edit the `_config.yml` file. Update the text per the following instructions, referencing the above image from the previous step:
+
+- Line 1: Enter your name as the title
+- Line 2: Replace the text on line 2 with the following:
+  - `logo: "images/my_image.png?raw=true"
+- Line 4: Replace the text with information about yourself
+- Line 6: Replace the text with information about yourself
+- Line 8 and 9: Delete the text from line 8 and 9
+- Line 10: Update the linkedin link with the url to your linkedin profile
+- If you would like, add additional links or data
+- Once you are done making changes, in the `Commit changes` section
+- Set the description to "updating profile contents'
+- Select `Create a new branch ...`
+- Leave the default name for the new branch
+- Click `Propose File Change`
+- Click `Create pull request`
+
+<details><summary>Screenshot 3.3.5.1</summary>
+<img src="media/2020-04-10-02-55-22.png">
+</details>
+
+<details><summary>Screenshot 3.3.5.2</summary>
+<img src="media/2020-04-10-02-56-47.png">
+</details>
+
+#### 3.3.6 On the PullRequest screen, review your changes, then scroll to the bottom of the pullrequest page and execute the following actions
+
+- Ensure that the value for `pr-build` is `All Tasks have completed executing` 
+- In the comment box, type `/approve` and then click the `Comment` button
+- Wait for the modernappsninja-jx-bot to process your approval (less than 2 minutes)
+- Once the page shows that the merge has been completed, an option to delete branch will appear
+- Click `Delete branch`
+
+#### 3.3.7 Open a new browser tab to your github.io portfolio page at https://modernappsninjas.github.io/<yourGithubUsername>. You should see the changes you made in the previous step reflected in your github.io profile page. 
+
+Note it can take up to a few minutes for github to process your changes and show the updates on your page.
+
+#### 3.3.8 On a seperate browser tab, in your github repository, navigate to the `/docs/` folder, click the `index.md` file, and then click the `Raw` button. Observe that the `index.md` page includes some html tags, and the source for the text and images shown on the right hand side of your profile page. Please see the image below for further detail. 
+
+<details><summary>Screenshot 3.3.8.1</summary>
+<img src="media/2020-04-10-03-16-07.png">
+</details>
+
+<details><summary>Screenshot 3.3.8.2</summary>
+<img src="media/2020-04-10-03-23-14.png">
+</details>
+
+#### 3.3.9 You do not need to update your index.md file at this time. When you complete a course that provides a certificate of completion, the course will provide further details on updating this page to reflect your certificate and other required details. 
+
+## Thank you for completing the Setting up your Modernapps Ninja Contributor Repository Lab Guide!
