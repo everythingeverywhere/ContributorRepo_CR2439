@@ -1,5 +1,6 @@
 # Setting up your Modernapps Ninja Contributor Repository
 
+not going to change this a whole lot yet until it is more set up 
 **Contents:**
 
 - [Step 1: About ModernApps Ninja Contributor Repository and Portfolio]()
